@@ -123,20 +123,17 @@ int (*PlatformSpecificVSNprintf)(char *str, size_t size, const char* format, va_
 
 static PlatformSpecificFile PlatformSpecificFOpenImplementation(const char* filename, const char* flag)
 {
-    (void)filename;
-    (void)flag;
-    return 0;
+    return fopen(filename, flag);
 }
 
 static void PlatformSpecificFPutsImplementation(const char* str, PlatformSpecificFile file)
 {
-    (void)str;
-    (void)file;
+    fprintf((FILE*)file, str);
 }
 
 static void PlatformSpecificFCloseImplementation(PlatformSpecificFile file)
 {
-    (void)file;
+    fclose((FILE*)file);
 }
 
 static void PlatformSpecificFlushImplementation()
